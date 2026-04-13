@@ -1819,7 +1819,11 @@
             </div>
         </div>
     </nav>
-
+    <!-- Audio Background -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="gincumerahmuda.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung pemutaran audio.
+    </audio>
     <!-- ============================================
          SCRIPTS
          ============================================ -->
@@ -1988,7 +1992,54 @@
                 alert('Alamat: ' + alamat);
             });
         }
+
+        // Inisialisasi elemen
+    const bgMusic = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+
+    // Fungsi Buka Undangan (sudah ada di template Anda)
+    function openInvitation() {
+        document.getElementById('cover').classList.add('opened');
+        document.body.style.overflow = 'auto';
+        musicBtn.style.display = 'flex';
+        document.getElementById('bottomNav').style.display = 'block';
+
+        // Mainkan lagu saat user klik "Buka Undangan"
+        bgMusic.volume = 0.4; // Volume awal 40% (tidak kaget)
+        bgMusic.play().then(() => {
+            isPlaying = true;
+            musicBtn.classList.add('spinning');
+            musicBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+        }).catch(err => {
+            console.warn('Autoplay dicegah browser. User bisa klik tombol musik manual.', err);
+        });
+    }
+
+    // Fungsi Toggle Musik (Pause/Play)
+    function toggleMusic() {
+        if (isPlaying) {
+            bgMusic.pause();
+            musicBtn.classList.remove('spinning');
+            musicBtn.innerHTML = '<i class="bi bi-music-note-beamed"></i>';
+        } else {
+            bgMusic.play();
+            musicBtn.classList.add('spinning');
+            musicBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+        }
+        isPlaying = !isPlaying;
+    }
+
+    // Pastikan tombol musik muncul & berfungsi
+    window.addEventListener('load', () => {
+        // Jika cover sudah terbuka otomatis (misal dev mode), aktifkan musik
+        if (!document.getElementById('cover').classList.contains('opened')) {
+            musicBtn.style.display = 'none';
+        }
+    });
     </script>
+
+    
+
 
 </body>
 </html>
