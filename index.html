@@ -1237,7 +1237,7 @@
             </div>
 
             <p class="cover-to">Kepada Yth. Bapak/Ibu/Saudara/i</p>
-            <p class="cover-guest">Tamu Undangan</p>
+            <p class="cover-guest" id="guestName">Tamu Undangan</p>
 
             <button class="btn-open" onclick="openInvitation()">
                 <i class="bi bi-envelope-open me-2"></i>Buka Undangan
@@ -1251,7 +1251,7 @@
     <section id="hero">
         <div class="hero-frame">
             <div class="hero-border">
-                <p class="hero-label">Assalamu'alaikum Wr. Wb.</p>
+                <p class="hero-label">Assalamu'alaikum <br> Warahmatullahi Wabarakatuh</p>
                 <p class="hero-label" style="font-size: 0.85rem; letter-spacing: 5px; margin-bottom: 30px;">
                     Undangan Pernikahan
                 </p>
@@ -1830,6 +1830,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        // Ambil & tampilkan nama tamu dari URL
+        function loadGuestName() {
+            const params = new URLSearchParams(window.location.search);
+            // Bisa pakai ?to=Nama atau ?nama=Nama
+            const guest = params.get('to') || params.get('nama') || 'Tamu Undangan';
+            const decodedName = decodeURIComponent(guest).trim();
+            
+            const el = document.getElementById('guestName');
+            if (el) el.textContent = decodedName;
+        }
+
+        // Jalankan setelah DOM siap
+        document.addEventListener('DOMContentLoaded', loadGuestName);
         // ============================================
         // OPEN INVITATION
         // ============================================
