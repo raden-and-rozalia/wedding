@@ -1255,6 +1255,63 @@
                 width: 10% !important;
             }
         }
+
+        /* ============================================
+   PERBAIKAN WARNA TOMBOL CAROUSEL (EMAS)
+   ============================================ */
+
+/* 1. Atur Posisi & Transparansi */
+#wishesCarousel .carousel-control-prev,
+#wishesCarousel .carousel-control-next {
+    top: auto; 
+    bottom: -50px; 
+    width: 35px;
+    height: 35px;
+    opacity: 1 !important; /* Paksa transparansi 100% */
+    z-index: 5;
+}
+
+#wishesCarousel .carousel-control-prev { left: 40%; }
+#wishesCarousel .carousel-control-next { right: 40%; }
+
+/* 2. Paksa Warna Background menjadi EMAS */
+#wishesCarousel .carousel-control-prev,
+#wishesCarousel .carousel-control-next {
+    background-color: var(--gold) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* 3. Hapus Icon Bawaan Bootstrap (Warna Biru) */
+#wishesCarousel .carousel-control-prev-icon,
+#wishesCarousel .carousel-control-next-icon {
+    background-image: none !important; /* Hapus icon SVG biru bawaan */
+    width: 20px;
+    height: 20px;
+}
+
+/* 4. Buat Icon Panah Manual agar Warna Bisa Diatur */
+#wishesCarousel .carousel-control-prev-icon::after {
+    content: '\F284'; /* Kode Unicode Bootstrap Icon 'chevron-left' */
+    font-family: 'bootstrap-icons' !important;
+    font-size: 1.2rem;
+    color: var(--maroon-deep); /* Warna panah gelap agar kontras dengan emas */
+}
+
+#wishesCarousel .carousel-control-next-icon::after {
+    content: '\F285'; /* Kode Unicode Bootstrap Icon 'chevron-right' */
+    font-family: 'bootstrap-icons' !important;
+    font-size: 1.2rem;
+    color: var(--maroon-deep); /* Warna panah gelap */
+}
+
+/* 5. Space bawah */
+#wishesCarousel {
+    margin-bottom: 70px; 
+}
     </style>
 </head>
 <body>
